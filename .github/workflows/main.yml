@@ -6,7 +6,10 @@ on:
 jobs:
   clone_run_python:
     runs-on: ubuntu-latest
-
+    
+    env:
+      OPENAI_API_KEY : ${{ secrets.OPENAI_API_KEY }}
+      
     steps:
     - name: Clonar repositorio actual
       uses: actions/checkout@v3
@@ -28,4 +31,18 @@ jobs:
         
     - name: Ejecutar script de Python
       run: python ./documentor/src/main.py
+      
+    - name: Eliminar carpeta
+      run: rm -rf documentor/
+      
+    - name: Configurar Git
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+    - name: Commit y Push
+      run: |
+        git add .
+        git commit -m "Eliminar mi_carpeta"
+        git push
       
