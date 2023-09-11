@@ -5,7 +5,7 @@ on:
 
 jobs:
   clone_run_python:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: Clonar repositorio actual
@@ -19,7 +19,7 @@ jobs:
         python-version: 3.9
 
     - name: Clonar repositorio externo
-      run: git clone https://github.com/diego4bits/orderd_documentation_project.git documentor/
+      run: git clone https://github.com/diego4bits/documentor_piedpiper.git documentor/
 
     - name: Instalar dependencias
       run: |
@@ -27,5 +27,5 @@ jobs:
         pip install -r ./documentor/requirements.txt
         
     - name: Ejecutar script de Python
-      run: python ./documentor/src/test.py
+      run: python ./documentor/src/main.py
       
