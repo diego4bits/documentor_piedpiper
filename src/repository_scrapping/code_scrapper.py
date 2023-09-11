@@ -47,10 +47,9 @@ class CodeScrapper:
         self._update_file_dependencies()
 
     def _update_parser(self):
-        try:
+        if self._input_file.file_extension != "":
             self._parser.set_language(FileExtension[self._input_file.file_extension].value)
-        except Exception as e:
-            raise Exception(f"error mk: {self._input_file.file_name}")
+
 
     def _update_nodes_names(self):
         self._relevant_nodes_names = LanguageNodes[
