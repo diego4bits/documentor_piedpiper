@@ -45,5 +45,8 @@ jobs:
       run: |
         git add .
         git commit -m "Eliminar mi_carpeta"
-        git push
+        
+    - name: GitHub Push
+      uses: ad-m/github-push-action@v0.6.0
+            
       
