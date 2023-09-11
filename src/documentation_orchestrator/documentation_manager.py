@@ -90,9 +90,6 @@ class DocumentationManager(metaclass=SingletonMeta):
         print("-------------------------------------------------------------\n")
         DocumentationManager.get_snippets_to_delete().show_storage()
         print("-------------------------------------------------------------\n")
-        print(DocumentationManager.instance._files_to_delete)
-        print(GitFileChecker.added)
-        print(GitFileChecker.modified)
         print("\n\n\nEND")
 
 

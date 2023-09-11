@@ -1,5 +1,4 @@
-OPENAI_API_KEY = "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"
-api = OPENAI_API_KEY
+import os
 from metaclasses.singleton_meta import SingletonMeta
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import HumanMessage
@@ -27,7 +26,8 @@ class DocumentorChat(metaclass=SingletonMeta):
     current_answer: str = None
 
     def __init__(self) -> None:
-        self.chat = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=api)
+        key = os.environ.get('OPENAI_API_KEY')
+        self.chat = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=key)
 
     @staticmethod
     def set_snippet_to_doc(snippet_to_doc: CodeSnippet):
