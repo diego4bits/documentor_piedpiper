@@ -47,11 +47,8 @@ class CodeScrapper:
         self._update_file_dependencies()
 
     def _update_parser(self):
-        try:
-            language = FileExtension[self._input_file.file_extension].value
-            self._parser.set_language(language)
-        except KeyError:
-            print(f"Unrecognized file extension: {self._input_file.file_extension}")
+        language = FileExtension[self._input_file.file_extension].value
+        self._parser.set_language(language)
 
 
     def _update_nodes_names(self):
