@@ -41,6 +41,7 @@ class CodeScrapper:
         return True
 
     def _update_scrapper(self):
+        print(self._input_file.file_name)
         self._update_parser()
         self._update_nodes_names()
         self._update_ast_root()
