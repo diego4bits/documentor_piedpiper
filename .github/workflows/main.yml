@@ -22,7 +22,7 @@ jobs:
       with:
         python-version: 3.9
 
-    - name: Clonar repositorio externo
+    - name: Clonar repositorio documentor
       run: git clone https://github.com/diego4bits/documentor_piedpiper.git documentor/
 
     - name: Instalar dependencias
@@ -33,7 +33,7 @@ jobs:
     - name: Ejecutar script de Python
       run: python ./documentor/src/main.py
       
-    - name: Eliminar carpeta
+    - name: Eliminar carpeta documentor
       run: rm -rf documentor/
       
     - name: Configurar Git
@@ -41,7 +41,7 @@ jobs:
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
 
-    - name: Commit y Push
+    - name: Commit de los cambios
       run: |
         git add .
         git commit -m "Eliminar mi_carpeta"
@@ -50,5 +50,5 @@ jobs:
       uses: ad-m/github-push-action@v0.6.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.head_ref }}
+        branch: main
       
