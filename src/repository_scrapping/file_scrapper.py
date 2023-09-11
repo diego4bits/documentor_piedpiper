@@ -5,7 +5,7 @@ from doc_ignore.doc_ignore import DocIgnore
 from git_tools.git_manager import GitManager
 from pathlib import Path
 from typing import List, Dict
-
+from tree_sitter_logic.languages import FileExtension
 
 class FileScrapper:
     _root_dir: Path
@@ -33,9 +33,10 @@ class FileScrapper:
         self._current_file = FileHandler(file_path)
 
     def _start_scrape(self, file_path: Path):
-        self._update_current_file(file_path)
-        self._code_scrapper.change_file(self._current_file)
-        self._code_scrapper.extract_snippets()
+        if file_path.suffix[1:] in FileExtension.__members__:
+            self._update_current_file(file_path)
+            self._code_scrapper.change_file(self._current_file)
+            self._code_scrapper.extract_snippets()
 
     def _valid_file(self, sys_path: Path) -> bool:
         divide_path = str(sys_path).split("\\")
