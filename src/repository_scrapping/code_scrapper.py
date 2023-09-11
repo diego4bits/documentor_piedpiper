@@ -33,7 +33,7 @@ class CodeScrapper:
             raise Exception("CodeScrapper_File_Error: No file has been charged ")
         self._scrape_relevant()
         self._scrape_assignment()
-        return True
+        return True # a little change
 
     def change_file(self, file: FileHandler) -> bool:
         self._input_file = file
