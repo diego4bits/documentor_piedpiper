@@ -16,6 +16,7 @@ class GitFilePaths:
             or (sys_path.suffix in GitFilePaths.doc_ignore)
             or (sys_path.name == ".docignore")
             or (sys_path.name == ".git")
+            or (sys_path.name == ".gitignore")
             or (sys_path.name == "doc.log")
         )
 
