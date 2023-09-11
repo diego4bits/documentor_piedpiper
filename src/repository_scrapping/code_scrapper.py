@@ -41,14 +41,16 @@ class CodeScrapper:
         return True
 
     def _update_scrapper(self):
-        print(self._input_file.file_name)
         self._update_parser()
         self._update_nodes_names()
         self._update_ast_root()
         self._update_file_dependencies()
 
     def _update_parser(self):
-        self._parser.set_language(FileExtension[self._input_file.file_extension].value)
+        try:
+            self._parser.set_language(FileExtension[self._input_file.file_extension].value)
+        except Exception as e:
+            raise Exception(f"error mk: {self._input_file.file_name}")
 
     def _update_nodes_names(self):
         self._relevant_nodes_names = LanguageNodes[
