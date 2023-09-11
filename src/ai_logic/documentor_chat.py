@@ -26,7 +26,8 @@ class DocumentorChat(metaclass=SingletonMeta):
     current_answer: str = None
 
     def __init__(self) -> None:
-        key = os.environ.get('OPENAI_API_KEY')
+        key=""
+        # key = os.environ.get('OPENAI_API_KEY')
         self.chat = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=key)
 
     @staticmethod
