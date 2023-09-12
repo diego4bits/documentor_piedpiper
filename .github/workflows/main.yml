@@ -63,10 +63,10 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./doc_template/build
+        publish_dir: ./docs_template/build
 
     - name: Eliminar carpeta clonada Documentor
-      run: rm -rf doc_template/
+      run: rm -rf docs_template/
 
     - name: Configurar Git
       run: |
