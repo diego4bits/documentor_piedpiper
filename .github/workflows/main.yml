@@ -37,9 +37,9 @@ jobs:
       run: rm -rf documentor/
 
     - name: Clonar repositorio DocTemplate
-      run: git clone https://github.com/diego4bits/docusaurus_test.git doc_template/
+      run: git clone https://github.com/diego4bits/docusaurus_test.git docs_template/
 
-    - name: Copiar carpeta de docs a doc_template
+    - name: Copiar carpeta de docs a docs_template
       run: |
         cp -r ./docs ./docs_template/docs
 
