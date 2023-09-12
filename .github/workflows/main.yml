@@ -55,6 +55,7 @@ jobs:
     
     - name: Build Docusaurus
       run: |
+        cd ./docs_template
         npm run build
 
     - name: Deploy to GitHub Pages
