@@ -1,32 +1,28 @@
 ## `extract_snippets() -> bool`
 
 #### Description:
-This method performs the extraction of code snippets from a specified input file. It belongs to the class `CodeScrapper`.
-
-#### Parameters:
-This method does not take any parameters.
+This method performs the extraction of code snippets from a given input file. It is used to scrape relevant code snippets and assignments from the file. This method belongs to the class `CodeScrapper`.
 
 #### Returns:
 - `bool`: Returns `True` if the extraction process is successful.
 
 #### Exceptions:
-- `Exception`: This exception is thrown when no file has been charged.
+- `Exception`: This exception is raised when no file has been charged.
 
 #### Usage Cases:
 
 ```python
 # Sample code to demonstrate a common use case
 scrapper = CodeScrapper()
-result = scrapper.extract_snippets()
-print(result)
+scrapper.extract_snippets()
 ```
 
 #### How it Works:
-1. Checks if an input file has been charged using the `_check_input_file()` method.
-2. If no file has been charged, an exception is raised.
-3. Calls the `_scrape_relevant()` method to perform the extraction of relevant code snippets.
-4. Calls the `_scrape_assignment()` method to perform the extraction of assignment code snippets.
-5. Returns `True` if the extraction process is successful.
+The method first checks if an input file has been charged using the `_check_input_file()` helper method. If no file has been charged, an exception is raised.
+
+Next, the method calls the `_scrape_relevant()` and `_scrape_assignment()` helper methods to perform the actual scraping of relevant code snippets and assignments from the file.
+
+Finally, the method returns `True` to indicate a successful extraction process.
 
 #### Dependencies:
-- `CodeScrapper`: This class depends on the class `CodeScrapper` for accessing its methods and attributes.
+- `CodeScrapper_File_Error`: This exception is used when no file has been charged.
