@@ -8,7 +8,7 @@ from metaclasses.singleton_meta import SingletonMeta
 
 class DocWriter(metaclass=SingletonMeta):
     instance: ClassVar
-    doc_path: Path = Path("./docs_website/docs")
+    doc_path: Path = Path("./docs")
     snippets_to_doc: Dict[int, CodeSnippet] = None
     current_snippet: CodeSnippet = None
     current_doc_path: Path = None
