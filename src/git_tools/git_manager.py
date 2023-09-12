@@ -29,7 +29,7 @@ class GitManager(metaclass=SingletonMeta):
             )
         self.tail_commit_tree = self.tail_commit.tree
         self.selected_commit = self.tail_commit
-        self.selected_commit_tree = self.tail_commit_tree
+        self.selected_commit_tree = self.tail_commit_tree #
 
     def _update_front_commit(self, front_commit_hash: str):
         new_front_commit = self.project_repo[front_commit_hash]
