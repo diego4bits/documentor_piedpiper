@@ -15,7 +15,7 @@ class CodeSnippet:
     parent_identifier: str
     code_snippet_type: str
     code_snippet_identifier: str
-    code_snippet_implementation: str = field(hash=False)
+    code_snippet_implementation: str = field(hash=False) #ccambio
 
     def __init__(
         self,
