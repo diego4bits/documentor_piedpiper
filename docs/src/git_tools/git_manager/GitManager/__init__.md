@@ -1,39 +1,46 @@
-## `__init__(repo_path: Path = Path.cwd()) -> None`
+## `__init__(repo_path: Path = Path.cwd())`
 
 #### Description:
-This method initializes an instance of the GitManager class. It sets up the necessary attributes for managing a git repository.
+This method initializes an instance of the `GitManager` class. It sets up the necessary attributes and properties for managing a Git repository.
 
 #### Parameters:
-- `repo_path` (`Path`): The path to the git repository. If not provided, the current working directory is used.
+- `repo_path` (`Path`): The path to the Git repository directory. If not provided, the current working directory is used.
 
 #### Returns:
-- `None`: This method does not return anything.
+This method does not return any value.
 
 #### Exceptions:
-- `Exception`: This exception is raised if there is no head parent commit in the repository.
+- `Exception`: Raised when there is no head parent commit in the repository.
 
 #### Usage Cases:
 
 ```python
-# Initialize GitManager with default repo path
+# Initializing GitManager instance with default repository path
 git_manager = GitManager()
 print(git_manager)
 
-# Initialize GitManager with custom repo path
-git_manager = GitManager(repo_path='/path/to/repo')
+# Initializing GitManager instance with a custom repository path
+custom_path = Path('/path/to/repository')
+git_manager = GitManager(repo_path=custom_path)
 print(git_manager)
 ```
 
 #### How it Works:
-1. The method takes an optional argument `repo_path`, which defaults to the current working directory if not provided.
-2. The repository at the given `repo_path` is opened using the `Repository` class from the `pygit2` module, and assigned to the `project_repo` attribute.
-3. The head commit of the repository is obtained using `project_repo.head.peel(Commit)`, and assigned to the `head_commit` attribute.
-4. The front commit is set to be the same as the head commit initially.
-5. The tree associated with the front commit is assigned to the `front_commit_tree` attribute.
-6. If the head commit has a parent commit, the tail commit is set to be the head commit's parent. Otherwise, an exception is raised.
-7. The tree associated with the tail commit is assigned to the `tail_commit_tree` attribute.
-8. The selected commit is initially set to be the tail commit, and the tree associated with it is assigned to the `selected_commit_tree` attribute.
+- The method takes an optional `repo_path` parameter, which specifies the path to the Git repository directory. If not provided, it defaults to the current working directory.
+- The method initializes the `project_repo` attribute by creating a `Repository` object using the `repo_path`.
+- It retrieves the head commit using `self.project_repo.head.peel(Commit)` and assigns it to the `head_commit` attribute.
+- The `front_commit` attribute is set to the same value as `head_commit`.
+- The `front_commit_tree` attribute is set to the tree associated with `front_commit`.
+- If the head commit has a parent, the `tail_commit` attribute is set to the first parent commit. Otherwise, an exception is raised.
+- The `tail_commit_tree` attribute is set to the tree associated with `tail_commit`.
+- The `selected_commit` attribute is set to the `tail_commit`.
+- The `selected_commit_tree` attribute is set to the tree associated with `tail_commit`.
 
 #### Dependencies:
-- `Path` from the `pathlib` module: Represents a filesystem path.
-- `Repository`, `Commit`, and `Tree` from the `pygit2` module: Used for interacting with git repositories.
+- `metaclasses.singleton_meta`: A metaclass used to create a singleton instance of the `GitManager` class.
+- `pathlib.Path`: A class for representing file system paths.
+- `pygit2.Repository`: A class for interacting with Git repositories.
+- `pygit2.Commit`: A class representing a Git commit.
+- `pygit2.Tree`: A class representing a Git tree.
+- `typing.ClassVar`: A type hint for class-level variables.
+- `typing.List`: A type hint for lists.
