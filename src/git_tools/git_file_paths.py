@@ -18,6 +18,8 @@ class GitFilePaths:
             or (sys_path.name == ".git")
             or (sys_path.name == ".gitignore")
             or (sys_path.name == "doc.log")
+            or (sys_path.name == "documentor")
+            or (sys_path.suffix != ".py")
         )
 
     @staticmethod

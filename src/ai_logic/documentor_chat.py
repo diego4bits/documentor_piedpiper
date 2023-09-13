@@ -13,9 +13,10 @@ from ai_logic.doc_example import (
     CLASS_DOCUMENTATION_TEMPLATE,
     METHOD_DOCUMENTATION_TEMPLATE,
     FUNCTION_DOCUMENTATION_TEMPLATE,
-    DEFAULT_DOCUMENTATION_TEMPLATE
+    DEFAULT_DOCUMENTATION_TEMPLATE,
 )
 from typing import ClassVar
+
 
 class DocumentorChat(metaclass=SingletonMeta):
     instance: ClassVar = None
@@ -27,7 +28,7 @@ class DocumentorChat(metaclass=SingletonMeta):
     current_answer: str = None
 
     def __init__(self) -> None:
-        key = os.environ.get('OPENAI_API_KEY')
+        key = os.environ.get("OPENAI_API_KEY")
         self.chat = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=key)
 
     @staticmethod
@@ -37,7 +38,7 @@ class DocumentorChat(metaclass=SingletonMeta):
     @staticmethod
     def ask_documentation():
         DocumentorChat.instance._ask_documentation()
-    
+
     @staticmethod
     def get_documentation_answer() -> str:
         return DocumentorChat.instance.current_answer
@@ -57,10 +58,7 @@ class DocumentorChat(metaclass=SingletonMeta):
             and self.snippet_to_doc.code_snippet_type == "function_definition"
         ):
             self._set_method_documentation()
-        elif (
-            self.snippet_to_doc.parent_type == "root node"
-            and self.snippet_to_doc == "function_defintion"
-        ):
+        elif self.snippet_to_doc == "function_defintion":
             self._set_function_documentation()
         else:
             self._set_default_documentation()
@@ -81,7 +79,7 @@ class DocumentorChat(metaclass=SingletonMeta):
             ],
         )
         self.system_message = SystemMessagePromptTemplate(prompt=template)
-    
+
     def _set_default_doc_message_template(self) -> None:
         template = PromptTemplate(
             template="Here is the implementaton of code snippet '{snippet_identifier}':\n'''{snippet_implementation}'''\n document the code snippet taking your time analyzing the reasons of it existence and why is important for the codebase,etc. Think about the correct understandment of the documentation. Use only the provided info.",
@@ -101,7 +99,7 @@ class DocumentorChat(metaclass=SingletonMeta):
             default_format=DEFAULT_DOCUMENTATION_TEMPLATE,
         ).to_messages()
         self.current_chat_message = prompt_value
-    
+
     def _set_function_documentation(self) -> None:
         self._set_function_system_message_template()
         self._set_function_doc_message_template()
@@ -214,5 +212,6 @@ class DocumentorChat(metaclass=SingletonMeta):
             method_format=METHOD_DOCUMENTATION_TEMPLATE,
         ).to_messages()
         self.current_chat_message = prompt_value
+
 
 DocumentorChat()
