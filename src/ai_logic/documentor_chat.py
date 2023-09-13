@@ -58,7 +58,7 @@ class DocumentorChat(metaclass=SingletonMeta):
             and self.snippet_to_doc.code_snippet_type == "function_definition"
         ):
             self._set_method_documentation()
-        elif self.snippet_to_doc == "function_defintion":
+        elif self.snippet_to_doc.code_snippet_type == "function_defintion":
             self._set_function_documentation()
         else:
             self._set_default_documentation()

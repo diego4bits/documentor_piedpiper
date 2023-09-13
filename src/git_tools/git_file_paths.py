@@ -11,15 +11,16 @@ class GitFilePaths:
 
     @staticmethod
     def _valid_file(sys_path: Path) -> bool:
+        divide_path = str(sys_path).split("\\")
         return not (
-            (sys_path.name in GitFilePaths.doc_ignore)
+            (any(path_name in GitFilePaths.doc_ignore for path_name in divide_path))
             or (sys_path.suffix in GitFilePaths.doc_ignore)
             or (sys_path.name == ".docignore")
             or (sys_path.name == ".git")
             or (sys_path.name == ".gitignore")
             or (sys_path.name == "doc.log")
             or (sys_path.name == "documentor")
-            or (sys_path.suffix != ".py")
+            or (sys_path.suffix != ".py" and sys_path.is_file())
         )
 
     @staticmethod

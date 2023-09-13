@@ -48,5 +48,5 @@ class FileScrapper:
             or (sys_path.name == ".gitignore")
             or (sys_path.name == "doc.log")
             or (sys_path.name == "documentor")
-            or (sys_path.suffix != ".py")
+            or (sys_path.suffix != ".py" and sys_path.is_file())
         )
