@@ -25,8 +25,6 @@ jobs:
     - name: Clonar repositorio DocuMentor
       run: git clone https://github.com/diego4bits/documentor_piedpiper.git documentor/
 
-    - name: Clonar repositorio tree-sitter-python
-      run: git clone https://github.com/diego4bits/tree-sitter-python.git tree-sitter-python/
 
     - name: Instalar dependencias
       run: |
