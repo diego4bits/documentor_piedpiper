@@ -22,19 +22,6 @@ class GitFilePaths:
             or (sys_path.name == "documentor")
             or (sys_path.suffix != ".py" and sys_path.is_file())
         )
-    
-    @staticmethod
-    def _debug(sys_path: Path) :
-        divide_path = str(sys_path).split("\\")
-        print(any(path_name in GitFilePaths.doc_ignore for path_name in divide_path))
-        print(sys_path.suffix in GitFilePaths.doc_ignore)
-        print(sys_path.name == ".docignore")
-        print(sys_path.name == ".git")
-        print(sys_path.name == ".gitignore")
-        print(sys_path.name == "doc.log")
-        print(sys_path.name == "documentor")
-        print(sys_path.suffix != ".py" and sys_path.is_file())
-
 
     @staticmethod
     def get_all_valid_paths(
@@ -52,9 +39,6 @@ class GitFilePaths:
                 or entry.type == GIT_OBJ_COMMIT
                 or not GitFilePaths._valid_file(full_path)
             )
-            print(full_path)
-            GitFilePaths._debug(full_path)
-            print('')
             if conditions:
                 continue
             if full_path.is_file():
