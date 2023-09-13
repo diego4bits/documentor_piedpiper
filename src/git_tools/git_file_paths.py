@@ -14,7 +14,7 @@ class GitFilePaths:
         divide_path = str(sys_path).split("\\")
         return not (
             (any(path_name in GitFilePaths.doc_ignore for path_name in divide_path))
-            or (sys_path.suffix in GitFilePaths.doc_ignore)
+            or (sys_path.suffix in GitFilePaths.doc_ignore and sys_path.suffix != "")
             or (sys_path.name == ".docignore")
             or (sys_path.name == ".git")
             or (sys_path.name == ".gitignore")

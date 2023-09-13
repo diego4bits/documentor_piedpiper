@@ -42,7 +42,7 @@ class FileScrapper:
         divide_path = str(sys_path).split("\\")
         return not (
             (any(path_name in self._ignore for path_name in divide_path))
-            or (sys_path.suffix in self._ignore)
+            or (sys_path.suffix in self._ignore and sys_path.suffix != "")
             or (sys_path.name == ".docignore")
             or (sys_path.name == ".git")
             or (sys_path.name == ".gitignore")
