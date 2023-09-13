@@ -1,4 +1,4 @@
-name: Run Python Script and Install Package
+name: Run DocuMentor
 
 on: 
   workflow_dispatch:
