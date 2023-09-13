@@ -17,4 +17,5 @@
 7. ¡Disfruta de una documentación actualizada y bonita!
 
 **IMPORTANTE**
-No borres la carpeta `docs` ni el archivo `doc.log`. Estos archivos llevan el registro de la historia de la documentación. 
+- No borres la carpeta `docs` ni el archivo `doc.log`. Estos archivos llevan el registro de la historia de la documentación. 
+- Si no existe el archivo `doc.log`, DocuMentor va a documentar todo como si fuera la primera vez que se ejecuta.
