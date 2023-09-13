@@ -13,6 +13,7 @@ from ai_logic.doc_example import (
     CLASS_DOCUMENTATION_TEMPLATE,
     METHOD_DOCUMENTATION_TEMPLATE,
     FUNCTION_DOCUMENTATION_TEMPLATE,
+    DEFAULT_DOCUMENTATION_TEMPLATE
 )
 from typing import ClassVar
 
@@ -61,7 +62,46 @@ class DocumentorChat(metaclass=SingletonMeta):
             and self.snippet_to_doc == "function_defintion"
         ):
             self._set_function_documentation()
+        else:
+            self._set_default_documentation()
 
+    def _set_default_documentation(self) -> None:
+        self._set_default_system_message_template()
+        self._set_default_doc_message_template()
+        self._set_default_current_chat_message()
+
+    def _set_default_system_message_template(self) -> None:
+        template = PromptTemplate(
+            template="You are a senior python developer. Given the following code snippet called '{snippet_identifier}', document it. Take into consideration that the code snippet belongs to the file '{file_name}' and this file have the following dependencies:{file_dependencies}. The documentation must be outputted in markdown format maintaining the following format: \n {default_format}",
+            input_variables=[
+                "snippet_identifier",
+                "file_name",
+                "file_dependencies",
+                "default_format",
+            ],
+        )
+        self.system_message = SystemMessagePromptTemplate(prompt=template)
+    
+    def _set_default_doc_message_template(self) -> None:
+        template = PromptTemplate(
+            template="Here is the implementaton of code snippet '{snippet_identifier}':\n'''{snippet_implementation}'''\n document the code snippet taking your time analyzing the reasons of it existence and why is important for the codebase,etc. Think about the correct understandment of the documentation. Use only the provided info.",
+            input_variables=["snippet_identifier", "snippet_implementation"],
+        )
+        self.current_doc_message = HumanMessagePromptTemplate(prompt=template)
+
+    def _set_default_current_chat_message(self):
+        chat_template = ChatPromptTemplate.from_messages(
+            [self.system_message, self.current_doc_message]
+        )
+        prompt_value = chat_template.format_prompt(
+            snippet_identifier=self.snippet_to_doc.code_snippet_identifier,
+            file_name=self.snippet_to_doc.file_name,
+            file_dependencies=self.snippet_to_doc.dependencies,
+            snippet_implementation=self.snippet_to_doc.implementation,
+            default_format=DEFAULT_DOCUMENTATION_TEMPLATE,
+        ).to_messages()
+        self.current_chat_message = prompt_value
+    
     def _set_function_documentation(self) -> None:
         self._set_function_system_message_template()
         self._set_function_doc_message_template()

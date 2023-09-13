@@ -105,3 +105,29 @@ Explanation or description of the internal workings of the method or the logic b
 - Another dependency (if applicable): Description...
 [In case of no dependencies display] This method does not have any dependencies.
 """
+#_______________________________________________________________________________
+#_______________________________________________________________________________
+DEFAULT_DOCUMENTATION_TEMPLATE = """
+## `code_snippet_identifier`
+
+#### Description:
+This code snippet performs [specific action] and is typically used for [purpose].
+
+#### Important info:
+Important information about code snippet
+
+#### Usage :
+
+- This code snippet is used for [specific use]
+- This code snippet is used for [specific use]
+- This code snippet is used for [specific use]
+
+#### How it Works:
+
+Explanation or description of the internal workings of the function or the logic behind it.
+
+#### Dependencies:
+- `DependencyName`: Brief description of the dependency and its role.
+- Another dependency (if applicable): Description...
+[In case of no dependencies display] This function does not have any dependencies.
+"""
