@@ -57,7 +57,7 @@ class DocWriter(metaclass=SingletonMeta):
     def _set_current_doc_path(self):
         file_path = self.current_snippet.file_path.parent
         file_name = str(self.current_snippet.file_path.stem)
-        file_doc = Path(self.current_snippet.code_snippet_identifier + ".md")
+        file_doc = Path("d_" + self.current_snippet.code_snippet_identifier + ".md")
         doc_file_path = self.doc_path / file_path / file_name 
         if self.current_snippet.parent_type == "class_definition":
             doc_file_path = doc_file_path / f"{self.current_snippet.parent_identifier}"
